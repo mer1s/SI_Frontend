@@ -1,13 +1,399 @@
-body {
+*{
+  font-family: 'Akshar', sans-serif !important;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* ===============================  CUSTOM */
+.h-100-vh{
+  height: 100vh !important;
+}
+.h-65-vh{
+  height: 67.5vh !important;
+}
+.bg-dark-transparent{
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.bg-light-transparent{
+  background-color: rgba(255, 255, 255, 0.7);
+}
+.bg-danger-light{
+  background-color: rgb(255, 110, 110);
+}
+.text-gray{
+  color: #8f8f8f;
+}
+.pt-header{
+  padding-top: 70px !important;
+}
+.mh-100{
+  min-height: 100vh;
+}
+.mh-75{
+  min-height: 75vh;
+}
+.loader-cont{
+  height: 100px;
+  width: 100px;
+  display: grid;
+  place-items: center;
+  border-radius: 50% !important;
+}
+.height-min-pt-header{
+  height: calc(100vh - 70px) !important;
+}
+.overlay{
+  margin: 0 !important;
+  padding: 0 !important;
+  position: fixed;
+  height: calc(100vh - 56.75px);
+  top:56.75px;
+  z-index: 22;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.75);
+  animation: show 0.5s;
+}
+.container-fluid{
+  padding-left: 0 !important;
+}
+.absolute-tr{
+  position: absolute;
+  top: 0.2rem;
+  right: 0.2rem;
+}
+.w-60{
+  width: 60% !important;
+}
+.w-40{
+  width: 40% !important;
+}
+.overflow-hidden{
+  overflow: hidden !important;
+}
+/* ===============================  ANIMATIONS */
+@keyframes show {
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@keyframes ad1 {
+  0%{
+    opacity: 1;
+    left: -100%;
+  }
+  15%{
+      opacity: 1;
+      left: 0%;
+  }
+  80%{
+    opacity:1;
+    left:0%;
+  }
+  100%{
+    left:0%;
+    opacity:0;
+  }
+}
+
+@keyframes ad2 {
+  0%{
+    opacity: 1;
+    left: -150%;
+  }
+  15%{
+    opacity: 1;
+    left: -150%;
+  }
+  30%{
+      opacity: 1;
+      left: 0%;
+  }
+  80%{
+    opacity:1;
+    left:0%;
+  }
+  100%{
+    left:0%;
+    opacity:0;
+  }
+}
+
+@keyframes ad3 {
+  0%{
+    opacity: 1;
+    left: -150%;
+  }
+  30%{
+    opacity: 1;
+    left: -150%;
+  }
+  45%{
+      opacity: 1;
+      left: 0%;
+  }
+  80%{
+    opacity:1;
+    left:0%;
+  }
+  100%{
+    left:0%;
+    opacity:0;
+  }
+}
+
+@keyframes ad4 {
+  0%{
+    opacity: 1;
+    left: -150%;
+  }
+  45%{
+    opacity: 1;
+    left: -150%;
+  }
+  60%{
+      opacity: 1;
+      left: 0%;
+  }
+  80%{
+    opacity:1;
+    left:0%;
+  }
+  100%{
+    left:0%;
+    opacity:0;
+  }
+}
+
+@keyframes slideFromRight {
+  from{
+    right: -400px;
+  }
+  to{
+    right: 0;
+  }
+}
+/* ===============================  MEDIA */
+@media screen and (max-width: 768px){
+   .filters{
+     height: 75vh;
+     overflow: auto;
+   }
+   .filters.w-50{
+     width: 90% !important;
+   }
+   .basket-cont{
+     width: 100% !important;
+   }
+}
+/* ===============================  HEADER */
+.link{
+  text-decoration: none !important;
+}
+#basic-nav-dropdown{
+  text-decoration: none !important;
+}
+#basic-nav-dropdown.dark{
+  color: white !important;
+}
+#basic-nav-dropdown.light{
+  color: black !important;
+}
+.hasNoBg, .hasBg{
+  transition: 0.35s;
+}
+.hasBg{
+  background-color: rgba(255,255,255,0.75) !important;
+  backdrop-filter: blur(2px) !important;
+}
+.nav-link{
+  padding-bottom: 0 !important;
+}
+/* ===============================  HOME */
+.house-interior-bg{
+  background: url('https://images.pexels.com/photos/6969870/pexels-photo-6969870.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+  background-position: center;
+  background-size: cover;
+}
+.landing h1{
+  font-size: 4rem;
+  margin-bottom: -5px;
+  letter-spacing: 1px;
+}
+.landing .position-absolute{
+  bottom: 1rem;
+  left: 2rem;
+  animation: upDown 3s infinite;
+}
+@keyframes upDown {
+  50%{
+    bottom: 1.75rem;
+  }
+  100%{
+    bottom: 1rem;
+  }
+}
+.newAdCard{
+  min-height: 275px !important;
+  text-align: left;
+}
+.newAdCard img{
+  border-top-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+.ad-order{
+  height: 15px;
+}
+.mt-ad-order{
+  margin-top: 95px !important;
+}
+.h-all-ads{
+  height: 827.5px !important;
+}
+/* =============================== FORMS */
+label{
+  position: relative;
+  bottom: 0.75px;
+}
+textarea{
+  width: 100% !important;
+}
+/* =============================== NEWS */
+.ad-animation-1{
+  animation: ad1 10s infinite;
+  position: relative;
+}
+.ad-animation-2{
+  animation: ad2 10s infinite;
+  position: relative;
+}
+.ad-animation-3{
+  animation: ad3 10s infinite;
+  position: relative;
+}
+.ad-animation-4{
+  animation: ad4 10s infinite;
+  position: relative;
+}
+/* =============================== SINGLE AD */
+.image-scroll{
+  max-height: 82.5vh;
+  overflow: auto;
+  scrollbar-color: red;
+}
+.mainImg{
+  height: 82.5vh !important;
+  /* object-fit: cover; */
+}
+.image-scroll::-webkit-scrollbar {
+  width: 0.35em;
+}
+.image-scroll::-webkit-scrollbar-thumb {
+  background-color: goldenrod !important;
+}
+.selectedImg{
+  border: 5px solid red !important;
+}
+.follow-btn{
+  position: absolute;
+  top: 0.35rem;
+  right: 0.35rem;
+}
+.follow-btn.isNotPart{
+  font-size: 1.25rem;
+  padding: 0;
+  margin: 0;
+  border: none;
+  line-height: 0;
+  font-weight: 900;
+  color: #8f8f8f;
+}
+.follow-btn.isPart{
+  font-size: 1.25rem;
+  padding: 0;
+  margin: 0;
+  border: none;
+  line-height: 0;
+  font-weight: 900;
+  color: red;
+}
+.search-link.isAuth{
+  font-size: 1.25rem;
+  padding: 0;
+  margin:0;
+  padding: 0;
+  top: 1.5rem;
+  right: 0.35rem;
+}
+.search-link.notAuth{
+  font-size: 1.25rem;
+  padding: 0;
+  padding: 0;
+  margin:0;
+  top: 0.05rem;
+  right: 0.35rem;
+}
+/* =============================== BASKET */
+.basket-cont{
+  position: fixed;
+  z-index: 1040;
+  top: 0;
+  right: 0;
+  width: 400px;
+  background-color: rgba(0, 0, 0, 0.85);
+  animation: slideFromRight 0.35s;
+}
+.basket-close{
+  top: 1.5rem;
+  right: 1.75rem;
+}
+.basket-show{
+  z-index: 1035;
+  top: 1.5rem;
+  right: 1.75rem;
+}
+.basket-inner-cont{
+  height: 92%;
+  overflow: auto;
+  direction: rtl;
+}
+.basket-inner-cont::-webkit-scrollbar {
+  width: 0.35em;
+}
+.basket-inner-cont::-webkit-scrollbar-thumb {
+  background-color: lightgoldenrodyellow !important;
+}
+.w-h-10px{
+  width: 25px !important;
+  height: 25px !important;
+}
+/* ==================================== DO OVDE JE IMALO NEKOG REDA... */
+.pagination-btn{
+  font-size: 1.75rem !important;
+  height: 80px;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.pagination-btn-bottom{
+  font-size: 1.75rem !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.pagination-btn span{
+  font-size: 1.25rem;
+  padding: 0px 5px;
+}
+.pagination-btn-bottom span{
+  font-size: 1.25rem;
+  padding: 0px 5px;
+}
+.code-generated{
+  animation: show 0.35s;
+}
+.responsive-profile-img{
+  width: 300px;
+  height: 300px;
 }
