@@ -379,6 +379,7 @@ const ProfileScreen = () => {
                                                 >
                                                     <Form.Control onChange={e => setLast(e.target.value)} value={lastName} size="xs" type="text" className='' placeholder="Korisničko ime" />
                                                 </FloatingLabel>
+                                                {/* eslint-disable-next-line */}
                                                 {nameLoading ? <Spinner animation="border" variant="warning"/> : <input disabled={(hasNumber(firstName) || hasNumber(lastName))||(firstName === userInfo.firstName) && (lastName === userInfo.lastName) || (!hasLower(firstName) && firstName.length >= 2) || (!hasUpper(firstName) && firstName.length >= 1) || firstName === "" || (!hasLower(lastName) && lastName.length >= 2) || (!hasUpper(lastName) && lastName.length >= 1) || lastName === ""} type='submit' value='Sačuvaj' className='w-100 btn btn-warning'/>}
                                             </Form>
                                         </Col>

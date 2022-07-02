@@ -97,12 +97,12 @@ const AllUsersScreen = () => {
         })
       }
         dispatch(listUsers(username, userInfo.id));
-    },[dispatch,userInfo.id,username,navigate,userInfo.role, success,contactSuccess,contactError])
+    },[dispatch,userInfo.id,username, navigate, userInfo.role, success,contactSuccess,contactError])
 
     useEffect(()=>{
         if(userInfo.role[0] !== "Admin"){}
             navigate('/404')
-    },[])
+    },[navigate, userInfo.role])
 
   return (
     <>
