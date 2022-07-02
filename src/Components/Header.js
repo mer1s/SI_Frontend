@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap'
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { USER_LOGOUT } from '../constants/accountContstants';
 import { FiAlignRight } from 'react-icons/fi'
 
@@ -45,8 +45,8 @@ const Header = (props) => {
       <Navbar.Brand as={Link} to='/' className={variant === 'transparent' && pathname !== '/registracija' && pathname !== "/kreiraj-oglas" ? 'text-light' : 'text-dark'}><span className='text-warning'>Real</span>Estate</Navbar.Brand>
            
       <Navbar.Toggle className='text-dark' aria-controls="responsive-navbar-nav"><FiAlignRight/></Navbar.Toggle>
-      <Navbar.Collapse collapseOnSelect id="responsive-navbar-nav">
-        <Nav collapseOnSelect className="ms-auto">
+      <Navbar.Collapse id="responsive-navbar-nav">
+        <Nav className="ms-auto">
           <Nav.Link onClick={props.basketClose} as={Link} to='/' className={`link ${pathname === '/' ? 'border-bottom border-warning' : ''} ${variant !== 'transparent' ? 'text-dark' : 'text-light'}`} eventKey="1">Početna</Nav.Link>
           <Nav.Link onClick={props.basketClose} as={Link} to='/svi-oglasi' className={`link ${pathname === '/svi-oglasi' ? 'border-bottom border-warning' : ''} ${variant !== 'transparent' ? 'text-dark' : 'text-light'}`} eventKey="2">Svi oglasi</Nav.Link>
           <Nav.Link onClick={props.basketClose} as={Link} to='/o-nama' className={`link ${pathname === '/o-nama' ? 'border-bottom border-warning' : ''} ${variant !== 'transparent' ? 'text-dark' : 'text-light'}`} eventKey="3">O nama</Nav.Link>
@@ -63,24 +63,33 @@ const Header = (props) => {
                 className='ms-2 dark' 
                 title={<span className={variant === 'transparent' ? 'text-light' : 'text-dark'}>{userInfo.username}</span>} 
                 id="basic-nav-dropdown"
-                eventKey="6"
               >
                 <NavDropdown.Item
-                eventKey="14"
+                  
+                  as={Link} 
+                  to='/profil'
+                  className={`p-2 px-3 text-light m-0`}
                 >
-                  <Nav.Link as={Link} to='/profil' className={`p-0 text-light m-0`}>Profil</Nav.Link>
+                  Profil
                 </NavDropdown.Item>
                 <NavDropdown.Item
-                eventKey="13"
+                  
+                  as={Link} 
+                  to='/profil/moji-oglasi'
+                  className={`p-2 px-3 text-light m-0`}
                 >
-                  <Nav.Link as={Link} to='/profil/moji-oglasi' className={`p-0 text-light m-0`}>Moji oglasi</Nav.Link>
+                  Moji oglasi
                 </NavDropdown.Item>
                 {userInfo.role[0] === "Admin" ? 
                   <>
+                    <NavDropdown.Divider />
                     <NavDropdown.Item
-                    eventKey="12"
+                    
+                    as={Link} 
+                    to='/korisnici'
+                    className={`p-2 px-3 text-light m-0`}
                     >
-                      <Nav.Link as={Link} to='/korisnici' className={`p-0 text-light m-0`}>Upravljanje korisnicima</Nav.Link>
+                      Upravljanje korisnicima
                     </NavDropdown.Item>
                   </> : ''
                 }
@@ -88,7 +97,7 @@ const Header = (props) => {
                 <NavDropdown.Item>
                   <button className={`p-0 w-100 text-light d-flex justify-content-between m-0 bg-transparent border-none btn p-0 m-0`}
                       onClick = {props.basketShow}
-                      eventKey="11"
+                      
                     >
                       Favoriti
                       {items && <span className='text-warning'>({items.length})</span>}
@@ -98,7 +107,7 @@ const Header = (props) => {
                 <NavDropdown.Item>
                   <button className={`p-0 text-light m-0 bg-transparent border-none btn p-0 m-0`}
                     onClick = {logout}
-                    eventKey="10"
+                    
                   >
                     Odjavi se
                   </button>

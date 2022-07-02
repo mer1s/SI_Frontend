@@ -17,7 +17,7 @@ const Basket = (props) => {
     const { items } = basket
 
     const remove = (id) =>{
-        console.log(id)
+        // console.log(id)
         dispatch(removeItem(id))
     }
 

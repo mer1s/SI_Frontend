@@ -30,7 +30,8 @@ const ProfileMyAdsScreen = () => {
     },[dispatch, deleteSuccess])
 
     const removeAd = (id) =>{
-        dispatch(deleteAdAction(id));
+        if(window.confirm('Da li ste sigurni'))
+            dispatch(deleteAdAction(id));
     }
 
     const editAd = (id) =>{
@@ -58,7 +59,7 @@ const ProfileMyAdsScreen = () => {
                 <Container>
                     <Row>
                     {ads.map(ad =>
-                    <Col md='3' className='mb-3'>
+                    <Col md='3' key={ad.id} className='mb-3'>
                         <Container fluid className='p-0 border-white mb-4 with-shadow m-0 text-light position-relative'>
                         <Link to={`/oglas/${ad.id}`} className='position-relative d-flex'>
                           <img className='w-100' height={'230px'} src={`${apiUrl}/Images/${ad.titlePath}`} alt={ad.name}/>  

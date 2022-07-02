@@ -1,1 +1,1 @@
-export const apiUrl = 'https://localhost:7007'
+export const apiUrl = 'http://merisahmatovic-001-site1.gtempurl.com'

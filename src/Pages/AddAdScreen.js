@@ -1,7 +1,7 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
-import { Col, Container, FloatingLabel, Form, FormGroup, Row } from 'react-bootstrap'
+import { Col, Container, FloatingLabel, Form, FormGroup, Row,Spinner } from 'react-bootstrap'
 import { useDropzone } from 'react-dropzone'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
@@ -68,7 +68,7 @@ const AddAdScreen = () => {
         },
         onDrop: acceptedFiles => {
         setFiles(acceptedFiles)
-        console.log(acceptedFiles)
+        // console.log(acceptedFiles)
         }
     });
 
@@ -203,8 +203,8 @@ const AddAdScreen = () => {
     }
 
     useEffect(()=>{
-        if(createError) console.log(createError)
-        if(updateError) console.log(updateError)
+        // if(createError) console.log(createError)
+        // if(updateError) console.log(updateError)
         if(!userInfo) navigate('/prijava');
 
         dispatch({type: AD_CREATE_RESET});
@@ -421,7 +421,7 @@ const AddAdScreen = () => {
                                         </aside>
                                     </section>
                                 </div>
-                                <input type={'submit'} className={`btn btn-warning w-100 py-3 mb-0`} value='Kreiraj oglas'/>
+                                {(updateLoading || createLoading) ?<Spinner className='mx-auto' animation="border" variant="warning"/> : <input type={'submit'} className={`btn btn-warning w-100 py-3 mb-0`} value='Kreiraj oglas'/>}
                             </FormGroup>
                         </Form>
                     </Col>

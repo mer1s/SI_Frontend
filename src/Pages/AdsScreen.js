@@ -87,7 +87,7 @@ const AdsScreen = () => {
     <>
       <div className='pt-header-min'></div>
         <div className='h-50-vh py-1 px-5 m-0 bg-warning text-dark flex-column center align-items-start'>
-          <h2 className=' pt-3 pb-0 m-0'>Nažalost trenutno nema dostupnih oglasa!</h2>
+          <h2 className=' pt-3 text-start pb-0 m-0'>Nažalost trenutno nema dostupnih oglasa!</h2>
           <h5 className=' pb-3 pt-0 m-0'>Pokušajte kasnije...</h5>
         </div> 
     </>

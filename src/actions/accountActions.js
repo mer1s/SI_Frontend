@@ -105,7 +105,7 @@ export const resetPw = (obj) => async (dispatch) =>{
 
 export const listUsers = (term, thisId) => async (dispatch) =>{
     try{
-        console.log(term)
+        // console.log(term)
         dispatch({
             type: ADMIN_LIST_USERS_REQ,
         })
@@ -147,7 +147,7 @@ export const deleteUserAction = (id) => async (dispatch) =>{
         }
         
         const {data } = await axios.delete(`${apiUrl}/api/accounts/all-users/${id}`, config);
-        console.log(data)
+        // console.log(data)
         dispatch({type: ADMIN_DELETE_USER_SUCCESS})
     }catch(err){
         dispatch({
@@ -184,7 +184,7 @@ export const contactUser = (id ,subject, content) => async (dispatch) =>{
         })
     }
     catch(err){
-        console.log(err)
+        // console.log(err)
     }
 }
 
@@ -201,7 +201,7 @@ export const reportUser = (id , report) => async (dispatch) =>{
         })
     }
     catch(err){
-        console.log(err)
+        // console.log(err)
     }
 }
 
@@ -264,7 +264,7 @@ export const editPassword = (newPass, hint) => async (dispatch) =>{
         localStorage.setItem('userInfo', JSON.stringify(user));
     }
     catch(err){
-        console.log(err)
+        // console.log(err)
     }
 }
 
@@ -294,7 +294,7 @@ export const editName = (first, last) => async (dispatch) =>{
         localStorage.setItem('userInfo', JSON.stringify(user));
     }
     catch(err){
-        console.log(err)
+        // console.log(err)
     }
 }
 
@@ -324,7 +324,7 @@ export const removePic = () => async (dispatch) =>{
         });  
     }
     catch(err){
-        console.log(err)
+        // console.log(err)
     }
 }
 
@@ -354,6 +354,6 @@ export const changePic = (fd) => async (dispatch) =>{
         });  
     }
     catch(err){
-        console.log(err)
+        // console.log(err)
     }
 }

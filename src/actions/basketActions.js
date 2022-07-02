@@ -32,7 +32,7 @@ export const addItem = (ad) => async (dispatch, getState) =>{
         localStorage.setItem('items', JSON.stringify(items)); 
 
     }catch(err){
-        console.log(err);
+        // console.log(err);
     }
 }
 
@@ -60,7 +60,7 @@ export const removeItem = (id) => async (dispatch, getState) =>{
 
         // localStorage.setItem('items', JSON.stringify(data));
     }catch(err){
-        console.log(err);
+        // console.log(err);
     }
 }
 // ne treba mozda
@@ -88,6 +88,6 @@ export const setBasket = (id) => async (dispatch, getState) =>{
 
         // localStorage.setItem('items', JSON.stringify(data));
     }catch(err){
-        console.log(err);
+        // console.log(err);
     }
 }
