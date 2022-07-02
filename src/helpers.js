@@ -31,6 +31,7 @@ export function hasNumber(str) {
 }
 
 export function hasSpec(str){
+    // eslint-disable-next-line
     var format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
 
     if(format.test(str)){
