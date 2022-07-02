@@ -32,7 +32,7 @@ export const register = (formData) => async (dispatch) =>{
             type: USER_REG_REQ
         })
 
-        const { data } = await axios.post(`${apiUrl}/api/accounts/register`, formData)
+        await axios.post(`${apiUrl}/api/accounts/register`, formData)
         
         dispatch({
             type: USER_REG_SUCCESS
@@ -146,7 +146,7 @@ export const deleteUserAction = (id) => async (dispatch) =>{
             }
         }
         
-        const {data } = await axios.delete(`${apiUrl}/api/accounts/all-users/${id}`, config);
+        await axios.delete(`${apiUrl}/api/accounts/all-users/${id}`, config);
         // console.log(data)
         dispatch({type: ADMIN_DELETE_USER_SUCCESS})
     }catch(err){
@@ -172,7 +172,7 @@ export const contactUser = (id ,subject, content) => async (dispatch) =>{
             }
         }
 
-        const { data } = await axios.post(`${apiUrl}/api/accounts/contact-user`, 
+        await axios.post(`${apiUrl}/api/accounts/contact-user`, 
             {
                 id,
                 subject,

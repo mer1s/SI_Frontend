@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { Col, Form, Row } from 'react-bootstrap'
+import { Form } from 'react-bootstrap'
 import { useDispatch } from 'react-redux';
-import { Link, Navigate, useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { reportUser } from '../actions/accountActions';
 import { REPORT_USER_RESET } from '../constants/accountContstants';
@@ -14,7 +14,7 @@ const ReportScreen = () => {
     const dispatch = useDispatch()
 
     const userReport = useSelector(s => s.userReport)
-    const { loading, success, error } = userReport
+    const { loading, success } = userReport
 
     const userLogin = useSelector(s => s.userLogin)
     const { userInfo } = userLogin
@@ -57,7 +57,7 @@ const ReportScreen = () => {
                 type: REPORT_USER_RESET
             })
         }
-    },[dispatch, success, err, id])
+    },[dispatch, success, err, id, navigate, userInfo])
 
   return (
     <div className='mh-100 center flex-column'>

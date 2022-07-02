@@ -8,12 +8,10 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { deleteAdAction, getAd } from '../actions/adActions';
 import moment from 'moment'
 import SameTypeAds from '../Components/SameTypeAds';
-import SameOwnerAds from '../Components/SameOwnerAds';
 import { USER_CONTACT_RESET } from '../constants/accountContstants';
 import { contactUser } from '../actions/accountActions';
-import { AD_DELETE_RESET, AD_UPDATE_SELECT, GET_SINGLE_AD_RESET } from '../constants/addConstants';
+import { AD_DELETE_RESET, AD_UPDATE_SELECT } from '../constants/addConstants';
 import { BASKET_REMOVE } from '../constants/basketConstants';
-import { addItem } from '../actions/basketActions';
 import { apiUrl } from '../helper';
 
 const AdScreen = () => {
@@ -30,10 +28,10 @@ const AdScreen = () => {
   const { userInfo } = userLogin
 
   const userContact = useSelector(state => state.userContact);
-  const { loading: contactLoading, error: contactError, success: contactSuccess } = userContact;
+  const { loading: contactLoading, success: contactSuccess } = userContact;
   
   const deleteAd = useSelector(state => state.deleteAd);
-  const { loading: deleteLoading, error: deleteError, success: deleteSuccess } = deleteAd;
+  const { loading: deleteLoading, success: deleteSuccess } = deleteAd;
 
   const basket = useSelector(s => s.basket)
   const { items } = basket
@@ -121,7 +119,7 @@ const AdScreen = () => {
       })
       navigate('/svi-oglasi')
     }
-  },[deleteSuccess, dispatch])
+  },[deleteSuccess, dispatch, navigate])
 
   useEffect(()=>{
     if(contactSuccess){
@@ -222,7 +220,7 @@ const AdScreen = () => {
               </Col>
               <Col md={2} className='image-scroll mb-5 mb-md-0 p-1 m-0'>
                 {ad.images.map(n =>  
-                  <img key={n.id} alt='image' onClick={() => setSelected(n.path)} className={`w-100 mx-1 mx-md-0 mb-md-2 ${selected === n.path ? 'selectedImg border-warning' : ''}`} height={'125px'} src={`${apiUrl}/Images/${n.path}`}></img>
+                  <img key={n.id} alt={id} onClick={() => setSelected(n.path)} className={`w-100 mx-1 mx-md-0 mb-md-2 ${selected === n.path ? 'selectedImg border-warning' : ''}`} height={'125px'} src={`${apiUrl}/Images/${n.path}`}></img>
                 )}
                 <h6 className='text-center pt-3 px-5 px-md-0'>Nije dostupno više slika.</h6>
               </Col>
@@ -279,7 +277,6 @@ const AdScreen = () => {
               </Col>
             </Row>
             <SameTypeAds thisId={ad.id} type={ad.type}/>
-            {/* <SameOwnerAds thisId={ad.id} type={ad.appUserId}/> */}
           </Container>
       }
     </Container>

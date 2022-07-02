@@ -1,28 +1,22 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { verify } from '../actions/accountActions';
-import axios from 'axios'
-import { apiUrl } from '../helper'
-import queryString from 'query-string';
 import { Spinner } from 'react-bootstrap';
 
 const VerificationScreen = () => {
-    const navigate = useNavigate();
 
     const [params] = useSearchParams();
-
-    const [loading, setLoading] = useState(true)
 
     const dispatch = useDispatch();
 
     const verification = useSelector(s => s.verify);
-    const { loading: verificationLoading, success, error } = verification
+    const { loading: verificationLoading, error } = verification
     
     useEffect(()=>{
         dispatch(verify(params.get('user'),params.get('token')))        
-    },[])
+    },[dispatch, params])
     
   return (
     <div className='h-100-vh bg-verified text-light d-flex justify-content-center align-items-center'>

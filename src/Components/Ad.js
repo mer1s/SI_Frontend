@@ -1,11 +1,10 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Container } from 'react-bootstrap'
 import { FiHeart } from 'react-icons/fi'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { addItem, removeItem } from '../actions/basketActions'
-import {FiSearch} from 'react-icons/fi'
 import moment from 'moment'
 import {apiUrl} from '../helper'
 

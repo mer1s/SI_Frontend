@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react'
-import { Col,Button, Container, FloatingLabel, Form, FormGroup, Row, Spinner } from 'react-bootstrap'
+import { Col, Container, FloatingLabel, Form, FormGroup, Row, Spinner } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -52,9 +52,7 @@ const RegisterScreen = () => {
             fd.append("lastName", lastname);
             fd.append("passwordHint", hint);
 
-            for (const value of fd.values()) {
-                console.log(value);
-              }
+        
 
             dispatch(register(fd))
         }
@@ -156,7 +154,7 @@ const RegisterScreen = () => {
         if(success)
             navigate('/prijava/?verification=true')
 
-    },[success, dispatch, error])
+    },[success, dispatch, error, navigate])
 
   return (
     <>

@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
-import { Container, Row, Col, ListGroup, ListGroupItem, ButtonGroup, Spinner } from 'react-bootstrap'
+import { Container, Row, Col, Spinner } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { deleteAdAction, getUsersAds } from '../actions/adActions'
-import { FiX, FiSearch, FiEdit, FiChevronLeft, FiChevronRight } from 'react-icons/fi'
+import { FiX, FiSearch, FiEdit, } from 'react-icons/fi'
 import { apiUrl } from '../helper'
 import { AD_DELETE_RESET } from '../constants/addConstants'
 import moment from 'moment'
@@ -15,10 +15,10 @@ const ProfileMyAdsScreen = () => {
     const dispatch = useDispatch();
     
     const userAds = useSelector(state => state.userAds)
-    const { loading, error, ads } = userAds
+    const { loading, ads } = userAds
     
     const deleteAd = useSelector(state => state.deleteAd)
-    const { loading : deleteLoading, error : deleteError, success : deleteSuccess } = deleteAd
+    const { success : deleteSuccess } = deleteAd
 
     useEffect(()=>{
     if(deleteSuccess){

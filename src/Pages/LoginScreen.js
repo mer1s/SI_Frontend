@@ -3,8 +3,8 @@ import { Col, Container, FloatingLabel, Form, Row, Spinner } from 'react-bootstr
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
-import { login, resetPw, verify } from '../actions/accountActions';
-import { USER_PASS_RESET_RESET_SUCCESS, USER_PASS_RESET_SUCCESS, USER_REG_RESET } from '../constants/accountContstants';
+import { login, resetPw} from '../actions/accountActions';
+import { USER_PASS_RESET_RESET_SUCCESS, USER_REG_RESET } from '../constants/accountContstants';
 import { BASKET_SET } from '../constants/basketConstants';
 
 const LoginScreen = () => {

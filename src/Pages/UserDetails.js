@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Col, Container, FloatingLabel, Form, Row, TabContainer } from 'react-bootstrap';
+import { Col, Container, FloatingLabel, Form, Row } from 'react-bootstrap';
 import { FiAlertTriangle, FiMail } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -14,12 +14,12 @@ const UserDetails = () => {
     const dispatch = useDispatch()
 
     const sameOwnerAds = useSelector(s => s.sameOwnerAds)
-    const {loading, user, ads, success, error} = sameOwnerAds
+    const {loading, user, ads, success} = sameOwnerAds
 
     const [contact, setContact] = useState(false)
 
     const userContact = useSelector(state => state.userContact);
-    const { loading: contactLoading, error: contactError, success: contactSuccess } = userContact;
+    const { loading: contactLoading } = userContact;
 
     const [subject, setSubject] = useState('');
     const [content, setContent] = useState('');
@@ -73,10 +73,10 @@ const UserDetails = () => {
           navigate('/profil')
         }
 
-        if(success) console.log(sameOwnerAds)
+        if(success) 
           dispatch(getSameOwnerAds(id))
 
-    },[dispatch])
+    },[dispatch, navigate, id, success, userInfo.id])
 
   return (
     <div className="container-fluid pe-0  mt-5 pt-5 mb-5">
@@ -144,7 +144,7 @@ const UserDetails = () => {
                 <div className="px-3 px-md-4">
                 <div className="row ">
                     <div className="col-md-4 col-lg-5 p-0 m-0">
-                        {user.imagePath && <img style={{width:'100%', height:'352px'}} src={`${apiUrl}/Images/${user.imagePath}`}/>}
+                        {user.imagePath && <img style={{width:'100%', height:'352px'}} alt={user.imagePath} src={`${apiUrl}/Images/${user.imagePath}`}/>}
                     </div>
                     <div className="col-md-8 p-0 h-100 col-lg-7">
                         <div className="d-flex h-100 flex-column">

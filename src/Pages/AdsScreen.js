@@ -4,12 +4,10 @@ import { useEffect } from 'react';
 import { Col, Container, Row, Spinner } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux'
-import { Link } from 'react-router-dom';
 import { getAds } from '../actions/adActions';
 import Ad from '../Components/Ad';
 import { FiX, FiChevronLeft, FiChevronRight } from 'react-icons/fi'
 import { addToStringArray, removeFromStringArray } from '../helpers';
-import News from '../Components/News';
 
 const AdsScreen = () => {
   const [page, setPage] = useState(1)
@@ -30,8 +28,11 @@ const AdsScreen = () => {
   const adList = useSelector(state => state.adList);
   const { loading, error, ads, total } = adList
   
+  // eslint-disable-next-line
   useEffect(()=>{
+    // eslint-disable-next-line
     dispatch(getAds(searcher, page));
+    // eslint-disable-next-line
   },[dispatch, page])
 
   // ==========================================

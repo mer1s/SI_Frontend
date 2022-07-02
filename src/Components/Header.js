@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap'
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { USER_LOGOUT } from '../constants/accountContstants';
 import { FiAlignRight } from 'react-icons/fi'
 
@@ -20,7 +20,7 @@ const Header = (props) => {
     }
 
     const userLogin = useSelector(s => s.userLogin);
-    const { userInfo, error } = userLogin
+    const { userInfo } = userLogin
 
     const basket = useSelector(s => s.basket);
     const { items } = basket

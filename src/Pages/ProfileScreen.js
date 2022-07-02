@@ -4,12 +4,11 @@ import { FiChevronDown, FiChevronUp, FiSearch, FiX } from 'react-icons/fi'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { changePic, deleteUserAction, editName, editPassword, editUsername, removePic } from '../actions/accountActions'
-import { ADMIN_DELETE_USER_RESET, USER_CHANGE_PIC_RESET, USER_EDIT_NAME_RESET, USER_EDIT_PASS_RESET, USER_EDIT_USERNAME_RESET, USER_LOGOUT, USER_REMOVE_PIC_RESET, USER_SET_FIRST, USER_SET_LAST, USER_SET_PIC, USER_SET_USERNAME } from '../constants/accountContstants'
+import { ADMIN_DELETE_USER_RESET, USER_CHANGE_PIC_RESET, USER_EDIT_NAME_RESET, USER_EDIT_PASS_RESET, USER_EDIT_USERNAME_RESET, USER_LOGOUT, USER_REMOVE_PIC_RESET, USER_SET_FIRST, USER_SET_LAST, USER_SET_USERNAME } from '../constants/accountContstants'
 import { apiUrl } from '../helper'
 import { hasLower, hasNumber, hasSpec, hasUpper } from '../helpers'
 
 const ProfileScreen = () => {
-    const [toEdit, setToEdit] = useState(false)
 
     const [usernameChange, setUsernameChange] = useState(false)
     const [passChange, setPassChange] = useState(false)
@@ -218,7 +217,7 @@ const ProfileScreen = () => {
             <div className="px-4">
                 <div className="row no-gutters">
                     <div className="col-md-4 col-lg-5 p-0 m-0">
-                        {userInfo.profilePic && <img style={{width:'100%', height:'352px'}} src={`${apiUrl}/Images/${userInfo.profilePic}`}/>}
+                        {userInfo.profilePic && <img style={{width:'100%', height:'352px'}} alt={userInfo.profilePic} src={`${apiUrl}/Images/${userInfo.profilePic}`}/>}
                     </div>
                     <div className="col-md-8 h-100 col-lg-7 p-0 ps-md-3">
                         <div className="d-flex h-100 w-100 flex-column">
@@ -400,7 +399,7 @@ const ProfileScreen = () => {
                                         <Col md='1'></Col>
                                         <Col md='4' className='p-2'>
                                             <Form onSubmit={changePicHandler} className='w-100 center flex-column'>
-                                                <img className='w-100 pb-3' src={image.imgFile ? image.imgSrc : `${apiUrl}/Images/${userInfo.profilePic}`}/>
+                                                <img className='w-100 pb-3' alt={'ok'} src={image.imgFile ? image.imgSrc : `${apiUrl}/Images/${userInfo.profilePic}`}/>
                                                 <input onChange={showPreview} type='file' className='w-100 pb-3'/>
                                                 {picChangeLoading ? <Spinner animation="border" variant="warning"/> : <input type='submit' disabled={image.imgFile ? false : true} className='btn w-100 btn-warning' value='Sačuvaj promene'/>}
                                             </Form>

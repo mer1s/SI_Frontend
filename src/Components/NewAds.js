@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getNewAds } from '../actions/adActions'
-import { apiUrl } from '../helper'
 import Ad from './Ad'
 
 const NewAds = () => {

@@ -2,21 +2,19 @@ import React, { useEffect } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
-import { Link } from 'react-router-dom'
 import { getSameTypeAds } from '../actions/adActions'
-import { apiUrl } from '../helper'
 import Ad from './Ad'
 
 const SameTypeAds = ({type, thisId}) => {
   const dispatch = useDispatch();
 
   const sameTypeAds = useSelector(s => s.sameTypeAds);
-  const { loading, ads, error } = sameTypeAds;
+  const { loading, ads } = sameTypeAds;
 
   useEffect(()=>{
     dispatch(getSameTypeAds(type, thisId));
     // console.log(ads)
-  },[dispatch, ])
+  },[dispatch, thisId, type])
 
   return (
       <Container className='no-shadow py-1 bg-dark' id='novi'>
