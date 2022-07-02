@@ -1,8 +1,8 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
-import { createAdReducer, deleteAdReducer, getAdsReducer, getNewAdsReducer, getSingleReducer, getSOAdsReducer, getSTAdsReducer, getUsersAdsReducer, updateAdReducer } from "./reducers/adReducers";
-import { loginReducer, registerReducer } from "./reducers/accountReducers";
+import { createAdReducer, deleteAdReducer, getAdsReducer, getNewAdsReducer, getSingleReducer, getSOAdsReducer, getSTAdsReducer, getUsersAdsReducer, selectAdReducer, updateAdReducer } from "./reducers/adReducers";
+import { changePicReducer, contactUserReducer, deleteUserReducer, editNameReducer, editPassReducer, editUsernameReducer, getUsersReducer, loginReducer, registerReducer, removePicReducer, reportUserReducer, resetPassReducer, verificationReducer } from "./reducers/accountReducers";
 import { basketReducer } from "./reducers/basketReducers";
 
 const reducer = combineReducers({
@@ -17,7 +17,19 @@ const reducer = combineReducers({
     sameTypeAds: getSTAdsReducer,
     sameOwnerAds: getSOAdsReducer,
     updateAd: updateAdReducer,
-    register: registerReducer
+    register: registerReducer,
+    verify: verificationReducer,
+    passwordReset: resetPassReducer,
+    allUsers: getUsersReducer,
+    userDelete: deleteUserReducer,
+    userContact: contactUserReducer,
+    selectedAd: selectAdReducer,
+    userReport: reportUserReducer,
+    usernameEdit: editUsernameReducer,
+    passEdit: editPassReducer,
+    nameEdit: editNameReducer,
+    picRemove: removePicReducer,
+    picChange: changePicReducer
 })
 
 const userInfoFromStorage = localStorage.getItem('userInfo') 

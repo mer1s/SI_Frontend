@@ -20,6 +20,11 @@ import { Online } from 'react-detect-offline';
 import { Offline } from 'react-detect-offline';
 import { Container } from 'react-bootstrap';
 import ProfileScreen from './Pages/ProfileScreen';
+import VerificationScreen from './Pages/VerificationScreen';
+import AllUsersScreen from './Pages/AllUsersScreen';
+import NotFoundScreen from './Pages/NotFoundScreen';
+import UserDetails from './Pages/UserDetails';
+import ReportScreen from './Pages/ReportScreen';
 function App() {
   const [loading, setLoading] = useState(true)
   
@@ -41,18 +46,13 @@ function App() {
       <Container fluid className='mh-100 text-light bg-dark d-flex justify-content-center align-items-center flex-column'>
         <h4 className='text-start m-0 p-0'>
           Poštovani, da bi <span className='text-warning'>RealEstate</span> sistem radio ispravno,<br></br> potrebna je stabilna internet konekcija.
-          <br></br>Molimo Vas da proverite status vaše mreže.<br></br> Hvala na razumevanju!
+          <br></br>Molimo Vas da proverite status Vaše mreže.<br></br> Hvala na razumevanju!
         </h4>
       </Container>
     </Offline>
     <Online>
       <div className="App">
-        {loading ? 
-          
-          <div className='h-100-vh d-flex justify-content-center align-items-center bg-light'>
-            <h2 className='text-dark'>Učitavanje...</h2>
-          </div> 
-          :
+        
           <>
           
           <BrowserRouter>
@@ -82,11 +82,15 @@ function App() {
               <Route path='/registracija' element={<RegisterScreen/>}/>
               <Route path='/profil/moji-oglasi' element={<ProfileMyAdsScreen/>}/>
               <Route path='/profil' element={<ProfileScreen/>}/>
+              <Route path='/korisnici' element={<AllUsersScreen/>}/>
+              <Route path='/korisnik/:id' element={<UserDetails/>}/>
+              <Route path='/verifikacija' element={<VerificationScreen/>}/>
+              <Route path='/report/:id' element={<ReportScreen/>}/>
+              <Route path='*' element={<NotFoundScreen/>}/>
             </Routes>
             <Footer/>
           </BrowserRouter>
           </>
-        }
       </div>
     </Online>
     </>

@@ -8,6 +8,10 @@
 .h-100-vh{
   height: 100vh !important;
 }
+/* ===============================  CUSTOM */
+.h-100-50{
+  height: 100vh !important;
+}
 .h-65-vh{
   height: 67.5vh !important;
 }
@@ -41,6 +45,24 @@
 }
 .height-min-pt-header{
   height: calc(100vh - 70px) !important;
+}
+.height-min-pt-header-all{
+  height: calc(100vh - 100px) !important;
+}
+.w-40-md{
+  width: 40%;
+}
+.w-60-md{
+  width: 60%;
+}
+.height-min-pt-header-new{
+  height: calc(100vh - 55px) !important;
+}
+.pt-header-min{
+  height: 56px;
+}
+.h-50-100{
+  height: 100vh !important;
 }
 .overlay{
   margin: 0 !important;
@@ -214,7 +236,7 @@
 }
 /* ===============================  HOME */
 .house-interior-bg{
-  background: url('https://images.pexels.com/photos/6969870/pexels-photo-6969870.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+  background: url('../public/bg.jpeg');
   background-position: center;
   background-size: cover;
 }
@@ -245,7 +267,7 @@
   border-bottom-right-radius: 20px;
 }
 .ad-order{
-  height: 15px;
+  height: 35px;
 }
 .mt-ad-order{
   margin-top: 95px !important;
@@ -284,6 +306,33 @@ textarea{
   overflow: auto;
   scrollbar-color: red;
 }
+.row-overflow{
+  overflow-x: hidden !important;
+}
+.w-40-md{
+  width: 40% !important;
+}
+.mh-100-50{
+  min-height: 100vh;
+}
+@media (max-width: 900px) {
+  .image-scroll{
+    display: flex;
+  }
+  .mh-100-50{
+    padding-top: 100px;
+    min-height: 50vh;
+  }
+  .w-40-md{
+    width: 80% !important;
+  }
+  .image-scroll::-webkit-scrollbar {
+    height: 0.5rem;
+  }
+  .mainImg{
+    max-height: 50vh !important;
+  }
+}
 .mainImg{
   height: 82.5vh !important;
   /* object-fit: cover; */
@@ -299,11 +348,19 @@ textarea{
 }
 .follow-btn{
   position: absolute;
-  top: 0.35rem;
-  right: 0.35rem;
+  top: 1.25rem;
+  right: 0.55rem;
+  transition: 0.35s;
+}
+.createdAt{
+  position: absolute;
+  bottom: -2px;
+  left: 5px;
+  transition: 0.35s;
 }
 .follow-btn.isNotPart{
   font-size: 1.25rem;
+  transition: 0.35s;
   padding: 0;
   margin: 0;
   border: none;
@@ -319,6 +376,10 @@ textarea{
   line-height: 0;
   font-weight: 900;
   color: red;
+}
+.follow-btn:hover{
+  transition: 0.35s;
+  transform: scale(1.1);
 }
 .search-link.isAuth{
   font-size: 1.25rem;
@@ -370,11 +431,16 @@ textarea{
   width: 25px !important;
   height: 25px !important;
 }
+.low-visibility{
+  opacity: 0.15;
+}
 /* ==================================== DO OVDE JE IMALO NEKOG REDA... */
 .pagination-btn{
   font-size: 1.75rem !important;
-  height: 80px;
+  height: 70px;
   margin: 0 !important;
+  margin-top: -20px !important;
+  margin-bottom: 10px !important;
   padding: 0 !important;
 }
 .pagination-btn-bottom{
@@ -390,10 +456,109 @@ textarea{
   font-size: 1.25rem;
   padding: 0px 5px;
 }
+.bg-card{
+  background-color: #efefef;
+  box-shadow: 10px 10px 5px #9f9f9f;
+  transition: 0.35s;
+}
+.bg-card:hover{
+  background-color: #efefef;
+  box-shadow: 10px 10px 5px #dfdfdf;
+  transition: 0.35s;
+}
+.userCardBtn > *{
+  position: relative;
+  bottom: 1.5px;
+}
+.with-shadow{
+  box-shadow: 10px 15px 5px #b2b2b2;
+  transition: 0.35s;
+}
+.no-shadow .with-shadow{
+  box-shadow: 5px 5px 25px #323232 !important;
+  transition: 0.35s;
+}
+.with-shadow:hover{
+  box-shadow: 15px 15px 15px #cfcfcf;
+  transform: scale(1.02);
+  transition: 0.35s;
+}
 .code-generated{
   animation: show 0.35s;
 }
+.bg-404{
+  background: linear-gradient(#cb2d3e, #ef473a) !important;
+}
+.bg-verified{
+  background: linear-gradient(#56ab2f, #a8e063) !important;
+}
+.h-50-vh{
+  min-height: 54.5vh !important;
+}
+.pt-7{
+  padding-top: 57px;
+}
+.relative-top-2{
+  position:relative;
+  top: 4px;
+}
 .responsive-profile-img{
-  width: 300px;
-  height: 300px;
+  width: 300px !important;
+  height: 300px !important;
+}
+.grid{
+  display: grid !important;
+  place-items: center !important;
+}
+.center{
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+/* ======================= STOLEN */
+
+.bg-black {
+  background: #000;
+}
+.skill-block {
+  width: 34.5%;
+  transition: 0.35s;
+  cursor: pointer;
+}
+.skill-block:hover {
+  transform: scale(1.05);
+  transition: 0.35s;
+}
+.skill-block-static{
+  width: 34.5%;
+  transition: 0.35s;
+}
+@media (min-width: 991px) and (max-width:1200px) {
+  .skill-block {
+    padding: 32px !important;
+  }
+}
+
+.userCard{
+  transition: 0.35s;
+}
+.userCard:hover{
+  transform: scale(1.05);
+  transition: 0.35s;
+}
+.h-40vh{
+  min-height: 40vh !important;
+}
+@media (min-width: 1200px) {
+  .skill-block {
+    padding: 56px !important;
+  }
+}
+@media (max-width: 900px) {
+  .w-40-md, .w-60-md {
+    width: 100% !important;
+  }
+  .h-50-100{
+    height: 50vh !important;
+  }
 }

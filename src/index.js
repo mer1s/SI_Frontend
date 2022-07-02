@@ -10,6 +10,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
   <React.StrictMode>
+    {/* zbog ovog taga iznad renderuje 2x, samo u developmentu */}
     <App />
   </React.StrictMode>
   </Provider>

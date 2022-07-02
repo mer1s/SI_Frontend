@@ -83,10 +83,21 @@ const AdsScreen = () => {
   }
 
   return (
-    <Container className='mh-100 pt-header bg-dark' fluid>
+    total === 0 && searcher.locations=== '' && searcher.types=== ''&& searcher.minPrice=== 0 &&  searcher.maxPrice === 0 ? 
+    <>
+      <div className='pt-header-min'></div>
+        <div className='h-50-vh py-1 px-5 m-0 bg-warning text-dark flex-column center align-items-start'>
+          <h2 className=' pt-3 pb-0 m-0'>Nažalost trenutno nema dostupnih oglasa!</h2>
+          <h5 className=' pb-3 pt-0 m-0'>Pokušajte kasnije...</h5>
+        </div> 
+    </>
+    :
+    <Container className='mh-100 bg-light p-0 m-0' fluid>
+      <div className='bg-light pt-header-min'></div>
+      <div className='bg-light pb-5'></div>
       {showFilters ? 
-        <Container fluid className='overlay d-flex align-items-center justify-content-center'>
-          <form onSubmit={submitHandler} className='filters position-relative rounded p-5 pb-4 w-60 bg-light'>
+        <Container fluid className='overlay p-3 p-md-0 d-flex align-items-center justify-content-center'>
+          <form onSubmit={submitHandler} className='filters position-relative rounded p-5 pb-4  bg-light'>
             <button onClick={(e)=> {e.preventDefault(); setShowFilters(false)}} className='btn-danger btn px-3 absolute-tr'><FiX/></button>
             <h5 className='text-center pb-3'>Izaberite parametre filtriranja:</h5>
             <Container fluid>
@@ -161,9 +172,9 @@ const AdsScreen = () => {
                   Cena
                   <div className='border-top pt-3 d-flex justify-content-start align-items-start flex-column'>
                     Min
-                    <input onChange={(e) => setSearcher({...searcher, minPrice: e.target.value})} value={searcher.minPrice} type={'text'} className='w-100 px-2 border-light rounded' placeholder='Minimalna cena...'/>
+                    <input onChange={(e) => setSearcher({...searcher, minPrice: e.target.value})} value={searcher.minPrice} type={'number'} className='w-100 px-2 border-light rounded mb-2' placeholder='Minimalna cena...'/>
                     Max
-                    <input onChange={(e) => setSearcher({...searcher, maxPrice: e.target.value})} value={searcher.maxPrice} type={'text'} className='w-100 px-2 border-light rounded mt-2' placeholder='Maksimalna cena...'/>
+                    <input onChange={(e) => setSearcher({...searcher, maxPrice: e.target.value})} value={searcher.maxPrice} type={'number'} className='w-100 px-2 border-light rounded' placeholder='Maksimalna cena...'/>
                   </div>
                   <div className='border-top pt-3 d-flex justify-content-start align-items-start flex-column'>
                     {/* Kvadratura:
@@ -174,7 +185,7 @@ const AdsScreen = () => {
                 <Col md='3' className='py-3'>
                   Poredak
                   <div className='border-top pt-3 d-flex justify-content-start align-items-start flex-column'>
-                    <select value={searcher.order} onChange={(e) => setSearcher({...searcher, order: e.target.value})}  className='p-1 border-none rounded'>
+                    <select value={searcher.order} onChange={(e) => setSearcher({...searcher, order: e.target.value})}  className='p-1 w-100 border-none rounded'>
                       <option value={"last"}>poslednje objavljeno</option>
                       <option value={"pASC"}>po ceni rastuće</option>
                       <option value={"pDESC"}>po ceni opadajuće</option>
@@ -193,58 +204,107 @@ const AdsScreen = () => {
         <div className='d-flex justify-content-center height-min-pt-header align-items-center'>
           <Spinner animation="border" variant="warning"/>
         </div> : error ? 'error' : 
-        <Container fluid className='px-5'>
-          <div className='d-flex justify-content-start pb-4'>
-            <button className='btn btn-light px-5 me-2' onClick={() => setShowFilters(true)}>Filteri</button>
-            {/* {filteri} */}
-          </div>
-          <p className='text-light text-start'>Aktivni filteri:</p>
-          <div className='d-flex flex-wrap'>
-            {!showFilters && searcher.locations !== "" ? searcher.locations?.split(',').map(n => <p key={n} className='px-2 rounded bg-warning me-2'>{n}</p>) : ''}
-            {!showFilters && searcher.types !== "" ? searcher.types?.split(',').map(n => <p key={n} className='px-2 rounded text-light bg-primary me-2'>{n}</p>) : ''}
-            {!showFilters && searcher.minPrice > 0 ? <p className='px-2 rounded text-light bg-success me-2'>Min: {searcher.minPrice}</p> : ''}
-            {!showFilters && (searcher.maxPrice > 0 || searcher.maxPrice > searcher.minPrice) ? <p className='px-2 rounded text-light bg-success me-2'>Max: {searcher.maxPrice}</p> : ''}
-          </div>
-          <Row>
-            <Col md='9'>
-              {(!loading && total > 0) ? 
-                <p className='text-white m-0 p-0 ad-order'>Prikazani oglasi <span className='text-warning'>{((page-1)*9) + 1}-{(page-1)*9 + ads.length}</span> od <span className='text-warning'>{total}</span></p> 
-                : 
-                <h4 className='text-white'>Lista je prazna</h4>
-              }
-              {!loading ?
-                  <Container className='d-flex justify-content-center align-items-center'>
-                      {page === 1 ? '' : <button onClick={() => setPage(s=> s-1)} className='pagination-btn btn text-light'><FiChevronLeft /><span>Prethodno</span></button>}
-                      {page >= (total / 9) ? '' : <button onClick={() => setPage(s=> s+1)} className='pagination-btn btn text-light'><span>Sledeće</span><FiChevronRight /></button>}
-                  </Container>
-                  :
-                  ''
-                }
-              <Row>
-                {!loading ? ads.map(n => 
-                  <Col key={n.id} md='4' className='text-light'>
-                      <Ad ad={n}/>
-                  </Col>
-                  ) 
+        <>
+          <Container className=''>
+            <div className='px-md-5'>
+              <div className='px-md-5'>
+                <div className='d-flex justify-content-start px-md-5 pb-3'>
+                  <button className='btn btn-dark px-5 me-2' onClick={() => setShowFilters(true)}>Filteri</button>
+                  {/* {filteri} */}
+                </div>
+                <p className='ps-md-5 text-start'>Aktivni filteri:</p>
+                <div className='d-flex flex-wrap px-md-5'>
+                  {!showFilters && searcher.locations !== "" ? searcher.locations?.split(',').map(n => <p key={n} className='px-2 rounded bg-warning me-2'>{n}</p>) : ''}
+                  {!showFilters && searcher.types !== "" ? searcher.types?.split(',').map(n => <p key={n} className='px-2 rounded text-light bg-primary me-2'>{n}</p>) : ''}
+                  {!showFilters && searcher.minPrice > 0 ? <p className='px-2 rounded text-light bg-success me-2'>Min: {searcher.minPrice}</p> : ''}
+                  {!showFilters && (searcher.maxPrice > 0 || searcher.maxPrice > searcher.minPrice) ? <p className='px-2 rounded text-light bg-success me-2'>Max: {searcher.maxPrice}</p> : ''}
+                </div>
+              </div>
+            </div>
+            {/* <Row>
+              <Col md='9'>
+                {(!loading && total > 0) ? 
+                  <p className='text-dark m-0 p-0 ad-order'>Prikazani oglasi <span className='text-warning'>{((page-1)*9) + 1}-{(page-1)*9 + ads.length}</span> od <span className='text-warning'>{total}</span></p> 
                   : 
-                  ''
+                  <h4 className='text-dark'>Lista je prazna</h4>
                 }
                 {!loading ?
-                  <Container className='d-flex justify-content-center align-items-center pb-5'>
-                      {page === 1 ? '' : <button onClick={() => setPage(s=> s-1)} className='pagination-btn-bottom btn text-light'><FiChevronLeft /><span>Prethodno</span></button>}
-                      {page >= (total / 9) ? '' : <button onClick={() => setPage(s=> s+1)} className='pagination-btn-bottom btn text-light'><span>Sledeće</span><FiChevronRight /></button>}
-                  </Container>
-                  :
-                  ''
-                }
-              </Row>
-            </Col>
-            <Col md='3'>
-              <div className='mt-ad-order'></div>
-              <News/>
-            </Col>
-          </Row>
-        </Container>}
+                    <Container className='d-flex justify-content-center align-items-center'>
+                        {page === 1 ? '' : <button onClick={() => setPage(s=> s-1)} className='pagination-btn btn'><FiChevronLeft /><span>Prethodno</span></button>}
+                        {page >= (total / 9) ? '' : <button onClick={() => setPage(s=> s+1)} className='pagination-btn btn'><span>Sledeće</span><FiChevronRight /></button>}
+                    </Container>
+                    :
+                    ''
+                  }
+                <Row>
+                  {!loading ? ads.map(n => 
+                    <Col key={n.id} md='4' className='px-1 p-0 m-0'>
+                        <Ad ad={n}/>
+                    </Col>
+                    ) 
+                    : 
+                    ''
+                  }
+                  {!loading ?
+                    <Container className='d-flex justify-content-center align-items-center pb-5'>
+                        {page === 1 ? '' : <button onClick={() => setPage(s=> s-1)} className='pagination-btn-bottom btn'><FiChevronLeft /><span>Prethodno</span></button>}
+                        {page >= (total / 9) ? '' : <button onClick={() => setPage(s=> s+1)} className='pagination-btn-bottom btn'><span>Sledeće</span><FiChevronRight /></button>}
+                    </Container>
+                    :
+                    ''
+                  }
+                </Row>
+              </Col>
+              <Col md='3'>
+                <div className={total > 9 ? 'mt-ad-order' : ''}></div>
+                <News/>
+              </Col>
+              <Col className='mt-3 p-5 bg-dark'></Col>
+            </Row> */}
+          </Container>
+          <Container fluid>
+            <Row>
+              {(!loading && total > 0) ? 
+                <p className='text-dark m-0 p-0 ad-order lead'>Prikazani oglasi <span className='text-warning'>{((page-1)*15) + 1}-{(page-1)*15 + ads.length}</span> od <span className='text-warning'>{total}</span></p> 
+                : 
+                ''
+              }
+              {!loading ?
+                <Container className='d-flex justify-content-center align-items-center pb-4'>
+                    {page === 1 ? '' : <button onClick={() => setPage(s=> s-1)} className='pagination-btn-bottom btn'><FiChevronLeft /><span>Prethodno</span></button>}
+                    {page >= (total / 15) ? '' : <button onClick={() => setPage(s=> s+1)} className='pagination-btn-bottom btn'><span>Sledeće</span><FiChevronRight /></button>}
+                </Container>
+                :
+                ''
+              }
+              <Col md='2' className='house-interior-bg'></Col>
+              <Col md='8' className='px-5 px-md-4 me-0 md-md-auto'>
+                <Row>
+                  {!loading && ads.length > 0 ? ads.map(n => 
+                    <Col key={n.id} md='4' className='px-2 mb-4 mb-md-0 p-0 m-0'>
+                        <Ad ad={n}/>
+                    </Col>
+                    ) 
+                    : 
+                    <div className='h-50-vh py-1 px-5 m-0 bg-404 flex-column center align-items-start'>
+                      <h2 className='text-light pt-3 pb-0 m-0'>Nema oglasa koji zadovoljavaju filtere pretrage!</h2>
+                      <h5 className='text-light pb-3 pt-0 m-0'>Molimo Vas promenite filtere</h5>
+                    </div>
+                  }
+                </Row>
+              </Col>
+              <Col md='2' className='house-interior-bg m-0 p-0 px-0 g-0'></Col>
+              {!loading ?
+                <Container className='d-flex justify-content-center align-items-center pb-4 pt-2'>
+                    {page === 1 ? '' : <button onClick={() => setPage(s=> s-1)} className='pagination-btn-bottom btn'><FiChevronLeft /><span>Prethodno</span></button>}
+                    {page >= (total / 15) ? '' : <button onClick={() => setPage(s=> s+1)} className='pagination-btn-bottom btn'><span>Sledeće</span><FiChevronRight /></button>}
+                </Container>
+                :
+                ''
+              }
+            </Row>
+          </Container>
+        </>}
     </Container>
   )
 }

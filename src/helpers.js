@@ -17,3 +17,25 @@ export const removeFromStringArray = (string, value) =>{
 
     return toReturn.slice(0, -1)
 }
+
+export function hasLower(str) {
+    return /[a-z]/g.test(str);
+}
+
+export function hasUpper(str) {
+    return /[A-Z]/g.test(str);
+}
+
+export function hasNumber(str) {
+    return /[0-9]/g.test(str);
+}
+
+export function hasSpec(str){
+    var format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+
+    if(format.test(str)){
+        return true;
+    } else {
+        return false;
+    }
+}

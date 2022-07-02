@@ -1,5 +1,6 @@
 import axios from "axios"
-import { AD_CREATE_FAIL, AD_CREATE_REQ, AD_CREATE_SUCCESS, AD_DELETE_FAIL, AD_DELETE_REQ, AD_DELETE_SUCCESS, AD_UPDATE_FAIL, AD_UPDATE_REQ, AD_UPDATE_SUCCESS, GET_ADS_FAIL, GET_ADS_REQUEST, GET_ADS_SUCCESS, GET_NEW_ADS_FAIL, GET_NEW_ADS_REQUEST, GET_NEW_ADS_SUCCESS, GET_SINGLE_AD_FAIL, GET_SINGLE_AD_REQUEST, GET_SINGLE_AD_SUCCESS, GET_SO_ADS_REQUEST, GET_ST_ADS_FAIL, GET_ST_ADS_REQUEST, GET_ST_ADS_SUCCESS, GET_USERS_ADS_FAIL, GET_USERS_ADS_REQUEST, GET_USERS_ADS_SUCCESS } from "../constants/addConstants"
+import { AD_CREATE_FAIL, AD_CREATE_REQ, AD_CREATE_SUCCESS, AD_DELETE_FAIL, AD_DELETE_REQ, AD_DELETE_SUCCESS, AD_UPDATE_FAIL, AD_UPDATE_REQ, AD_UPDATE_SUCCESS, GET_ADS_FAIL, GET_ADS_REQUEST, GET_ADS_SUCCESS, GET_NEW_ADS_FAIL, GET_NEW_ADS_REQUEST, GET_NEW_ADS_SUCCESS, GET_SINGLE_AD_FAIL, GET_SINGLE_AD_REQUEST, GET_SINGLE_AD_SUCCESS, GET_SO_ADS_FAIL, GET_SO_ADS_REQUEST, GET_SO_ADS_SUCCESS, GET_ST_ADS_FAIL, GET_ST_ADS_REQUEST, GET_ST_ADS_SUCCESS, GET_USERS_ADS_FAIL, GET_USERS_ADS_REQUEST, GET_USERS_ADS_SUCCESS } from "../constants/addConstants"
+import { BASKET_REMOVE } from "../constants/basketConstants"
 import { apiUrl } from "../helper"
 
 export const getAds = (searcher, page) => async (dispatch) =>{
@@ -8,16 +9,19 @@ export const getAds = (searcher, page) => async (dispatch) =>{
             type: GET_ADS_REQUEST,
         })
 
-        const { data } = await axios.get(`https://localhost:7007/api/ads/searcher?Order=${searcher.order}&Types=${searcher.types}&Locations=${searcher.locations}&MinPrice=${searcher.minPrice}&MaxPrice=${searcher.maxPrice}&PageNum=${page}`)
+        const { data } = await axios.get(`${apiUrl}/api/ads/searcher?Order=${searcher.order}&Types=${searcher.types}&Locations=${searcher.locations}&MinPrice=${searcher.minPrice}&MaxPrice=${searcher.maxPrice}&PageNum=${page}`)
         
-        dispatch({
-            type: GET_ADS_SUCCESS,
-            payload: data
-        })
+        setTimeout(()=>{
+            dispatch({
+                type: GET_ADS_SUCCESS,
+                payload: data
+            })
+        },500)
+
     }catch(err){
         dispatch({
             type: GET_ADS_FAIL,
-            payload: err.response.data
+            payload: 'Došlo je do greške pri učitavanju svih oglasa'
         })
     }
 }
@@ -29,26 +33,31 @@ export const getNewAds = () => async (dispatch) =>{
         })
 
         const { data } = await axios.get(`${apiUrl}/api/Ads/new-ads`)
+        
+        setTimeout(()=>{
+            dispatch({
+                type: GET_NEW_ADS_SUCCESS,
+                payload: data
+            })
+        },500)
 
-        dispatch({
-            type: GET_NEW_ADS_SUCCESS,
-            payload: data
-        })
     }catch(err){
         dispatch({
             type: GET_NEW_ADS_FAIL,
-            payload: err.message
+            payload: 'Došlo je do greške pri učitavanju najnovijih oglasa'
         })
     }
 }
 
-export const getSameTypeAds = (type) => async (dispatch) =>{
+export const getSameTypeAds = (type, id) => async (dispatch) =>{
     try{
+        
+        
         dispatch({
             type: GET_ST_ADS_REQUEST,
         })
-
-        const { data } = await axios.get(`${apiUrl}/api/Ads/same-type/${type}`)
+        // https://localhost:7007/api/Ads/same-type/typeSearcher?Type=stan&ThisId=1047
+        const { data } = await axios.get(`${apiUrl}/api/Ads/same-type/typeSearcher?Type=${type}&ThisId=${id}`)
 
         dispatch({
             type: GET_ST_ADS_SUCCESS,
@@ -59,6 +68,7 @@ export const getSameTypeAds = (type) => async (dispatch) =>{
             type: GET_ST_ADS_FAIL,
             payload: err.response
         })
+        
     }
 }
 
@@ -71,12 +81,13 @@ export const getSameOwnerAds = (ownerId) => async (dispatch) =>{
         const { data } = await axios.get(`${apiUrl}/api/Ads/same-owner/${ownerId}`)
 
         dispatch({
-            type: GET_ST_ADS_SUCCESS,
+            type: GET_SO_ADS_SUCCESS,
             payload: data
         })
+
     }catch(err){
         dispatch({
-            type: GET_ST_ADS_FAIL,
+            type: GET_SO_ADS_FAIL,
             payload: err.response
         })
     }
@@ -90,14 +101,17 @@ export const getAd = (id) => async (dispatch) =>{
 
         const { data } = await axios.get(`${apiUrl}/api/ads/${id}`)
 
-        dispatch({
-            type: GET_SINGLE_AD_SUCCESS,
-            payload: data
-        })
+        setTimeout(()=>{
+            dispatch({
+                type: GET_SINGLE_AD_SUCCESS,
+                payload: data
+            })
+        },500)
+
     }catch(err){
         dispatch({
             type: GET_SINGLE_AD_FAIL,
-            payload: err.response
+            payload: 'Nažalost, tražena nekretnina nije pronađena'
         })
     }
 }
@@ -117,12 +131,14 @@ export const getUsersAds = () => async (dispatch) =>{
             }
         }
         
-        const { data } = await axios.get(`https://localhost:7007/api/ads/my-ads`, config)
+        const { data } = await axios.get(`${apiUrl}/api/ads/my-ads`, config)
 
-        dispatch({
-            type: GET_USERS_ADS_SUCCESS,
-            payload: data
-        })
+        setTimeout(()=>{
+            dispatch({
+                type: GET_USERS_ADS_SUCCESS,
+                payload: data
+            })
+        }, 500)
     }catch(err){
         dispatch({
             type: GET_USERS_ADS_FAIL,
@@ -133,7 +149,7 @@ export const getUsersAds = () => async (dispatch) =>{
 
 export const createNewAd = (formData) => async (dispatch) =>{
     try{
-        // console.log(formData);
+        // ;
         dispatch({type: AD_CREATE_REQ})
         
         var token = JSON.parse(localStorage.getItem("userInfo")).token;
@@ -161,6 +177,7 @@ export const createNewAd = (formData) => async (dispatch) =>{
 
 export const deleteAdAction = (id) => async (dispatch) =>{
     try{
+        // console.log(id)
         dispatch({type: AD_DELETE_REQ})
         
         var token = JSON.parse(localStorage.getItem("userInfo")).token;
@@ -174,7 +191,15 @@ export const deleteAdAction = (id) => async (dispatch) =>{
         
         await axios.delete(`${apiUrl}/api/ads/${id}`, config);
         
-        dispatch({type: AD_DELETE_SUCCESS})
+        setTimeout(()=>{
+            dispatch({type: AD_DELETE_SUCCESS})
+        },500)
+        
+        dispatch({
+            type: BASKET_REMOVE,
+            payload: id
+        })
+
     }catch(err){
         dispatch({
             type: AD_DELETE_FAIL,
@@ -208,6 +233,6 @@ export const updateSingleAd = (id, ad) => async (dispatch) =>{
             type: AD_UPDATE_FAIL,
             payload: err.response.data.title
         })
-        console.log(err)
+        
     }
 }
