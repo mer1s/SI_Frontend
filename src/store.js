@@ -1,6 +1,6 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from 'redux-thunk'
-import { composeWithDevTools } from 'redux-devtools-extension'
+// import { composeWithDevTools } from 'redux-devtools-extension'
 import { createAdReducer, deleteAdReducer, getAdsReducer, getNewAdsReducer, getSingleReducer, getSOAdsReducer, getSTAdsReducer, getUsersAdsReducer, selectAdReducer, updateAdReducer } from "./reducers/adReducers";
 import { changePicReducer, contactUserReducer, deleteUserReducer, editNameReducer, editPassReducer, editUsernameReducer, getUsersReducer, loginReducer, registerReducer, removePicReducer, reportUserReducer, resetPassReducer, verificationReducer } from "./reducers/accountReducers";
 import { basketReducer } from "./reducers/basketReducers";
@@ -45,8 +45,8 @@ const initialState = {
     basket: { items: basketFromStorage }
 }
 
-const middleware = [thunk]
+// const middleware = [thunk]
 
-const store = createStore(reducer, initialState, composeWithDevTools(applyMiddleware(...middleware)))
+const store = createStore(reducer, initialState, applyMiddleware(thunk))
 
 export default store
