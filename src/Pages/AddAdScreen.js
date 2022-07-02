@@ -12,7 +12,7 @@ import { createNewAd, updateSingleAd } from '../actions/adActions'
 const AddAdScreen = () => {
     const navigate = useNavigate()
     const [params] = useSearchParams();
-    const [init, setInit] = useState(params.get('updateId') ? params.get('updateId') : null);
+    const [init] = useState(params.get('updateId') ? params.get('updateId') : null);
     
     const [err, setErr] = useState({ 
         nameError: '', 
@@ -216,7 +216,7 @@ const AddAdScreen = () => {
         if(updateSuccess){
             navigate(`/oglas/${updateId}`);
         }
-    },[dispatch, createError, createSuccess, updateSuccess, updateError, init, params])
+    },[dispatch, id, navigate, updateId,userInfo,createError, createSuccess, updateSuccess, updateError, init, params])
 
   return (
       <>

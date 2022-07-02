@@ -209,7 +209,7 @@ const ProfileScreen = () => {
             setPassChange(false)
         }
 
-    },[dispatch, userInfo.profilePic, deleteSuccess, usernameSuccess, usernameError, passSuccess, nameSuccess, picSuccess, picChangeSuccess])
+    },[dispatch, firstName,lastName,navigate,userName,userInfo.profilePic, deleteSuccess, usernameSuccess, usernameError, passSuccess, nameSuccess, picSuccess, picChangeSuccess])
     
   return (
     <div className="px-md-5 pt-header">

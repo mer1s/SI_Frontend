@@ -25,7 +25,7 @@ const Header = (props) => {
     const basket = useSelector(s => s.basket);
     const { items } = basket
 
-    const [variant, setVariant] = useState('light');
+    const [variant] = useState('light');
     
     const { pathname } = useLocation();
 

@@ -27,7 +27,7 @@ const AllUsersScreen = () => {
     const { userInfo } = userLogin
     
     const allUsers = useSelector(s => s.allUsers)
-    const { users, loading, error } = allUsers
+    const { users, loading } = allUsers
     
     const deleteUser = useSelector(s => s.userDelete)
     const { success } = deleteUser
@@ -97,7 +97,7 @@ const AllUsersScreen = () => {
         })
       }
         dispatch(listUsers(username, userInfo.id));
-    },[dispatch, success,contactSuccess,contactError])
+    },[dispatch,userInfo.id,username,navigate,userInfo.role, success,contactSuccess,contactError])
 
     useEffect(()=>{
         if(userInfo.role[0] !== "Admin"){}

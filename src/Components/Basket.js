@@ -10,9 +10,6 @@ import { FiMinus } from 'react-icons/fi'
 const Basket = (props) => {
     const dispatch = useDispatch()
 
-    const userLogin = useSelector(s => s.userLogin)
-    // const { userInfo } = userLogin
-
     const basket = useSelector(s => s.basket)
     const { items } = basket
 
