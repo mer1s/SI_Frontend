@@ -166,7 +166,7 @@ const UserDetails = () => {
                             <div className="p-3 pt-4 bg-black text-white">
                                 <h6>{user.mail}</h6>
                             </div>
-                            {userInfo ? user.verified ?
+                            {user.verified ?
                             <div className="d-flex flex-row text-white">
                                 <div className="p-4 bg-primary text-center skill-block-static">
                                     <h4>{ads.length}</h4>
@@ -188,7 +188,7 @@ const UserDetails = () => {
                                     <h4 className='p-0 py-3 m-0'>Korisnik još uvek nije verifikovan</h4>
                                 </div>
                               </div>
-                            :''}
+                            }
                         </div>
                     </div>
                 </div>
