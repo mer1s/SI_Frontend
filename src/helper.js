@@ -1,1 +1,1 @@
-export const apiUrl = 'http://merisahmatovic-001-site1.gtempurl.com'
+export const apiUrl = 'http://realestate-si-backend.herokuapp.com'
