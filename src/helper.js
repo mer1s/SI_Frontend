@@ -1,1 +1,1 @@
-export const apiUrl = 'http://realestate-si-backend.herokuapp.com'
+export const apiUrl = 'https://realestate-si-backend.herokuapp.com'
