@@ -86,7 +86,7 @@ const UserDetails = () => {
 
         dispatch(getSameOwnerAds(id))
 
-    },[dispatch, userInfo, navigate, success, id, contactSuccess, userInfo.id])
+    },[dispatch, userInfo, navigate, success, id, contactSuccess, userInfo?.id])
 
   return (
     <div className="container-fluid pe-0  mt-5 pt-5 mb-5">
