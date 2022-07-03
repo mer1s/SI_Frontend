@@ -104,7 +104,7 @@ const AdScreen = () => {
   }
 
   useEffect(()=>{
-    // if(error === ''){
+    // if(error == ''){
     //   navigate('/404')
     // }
     // dispatch({
