@@ -243,7 +243,7 @@ const AdScreen = () => {
                     <h6 className='d-flex justify-content-between'>Ukupno soba: <span className='ms-auto'>{ad.rooms}</span></h6>
                     <h6 className='d-flex justify-content-between'>Broj kupatila: <span className='ms-auto'>{ad.bathrooms}</span></h6>
                     <h6 className='d-flex justify-content-between'>Parking: <span className='ms-auto'>{ad.parkingSize > 0 ? `Da (${ad.parkingSize})` : 'Ne'}</span></h6>
-                    <h6 className='d-flex justify-content-between'>Stanje nekretnine: <span className='ms-auto'>{ad.propState}</span></h6>
+                    <h6 className='d-flex justify-content-between'>Tip gradnje: <span className='ms-auto'>{ad.propState}</span></h6>
                   </ListGroupItem>
                   
                   <ListGroupItem className='text-left pb-1 text-start bg-dark text-light border-bottom border-light'>
