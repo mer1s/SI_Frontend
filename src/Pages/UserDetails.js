@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { Col, Container, FloatingLabel, Form, Row } from 'react-bootstrap';
+import { Col, Container, FloatingLabel, Form, Row, Spinner } from 'react-bootstrap';
 import { FiAlertTriangle, FiMail } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { contactUser } from '../actions/accountActions';
 import { getSameOwnerAds } from '../actions/adActions';
 import Ad from '../Components/Ad';
+import { USER_CONTACT_RESET } from '../constants/accountContstants';
 import { apiUrl } from '../helper';
 
 const UserDetails = () => {
@@ -19,7 +20,7 @@ const UserDetails = () => {
     const [contact, setContact] = useState(false)
 
     const userContact = useSelector(state => state.userContact);
-    const { loading: contactLoading } = userContact;
+    const { loading: contactLoading, success: contactSuccess } = userContact;
 
     const [subject, setSubject] = useState('');
     const [content, setContent] = useState('');
@@ -73,19 +74,28 @@ const UserDetails = () => {
           navigate('/profil')
         }
 
-        if(success) 
-          dispatch(getSameOwnerAds(id))
+        if(contactSuccess){
+          dispatch({
+            type: USER_CONTACT_RESET
+          })
+          setContact(false) 
+          setSubject('') 
+          setContent('') 
+        } 
 
-    },[dispatch, navigate, id, success, userInfo.id])
+        dispatch(getSameOwnerAds(id))
+
+    },[dispatch, navigate, success, id, contactSuccess, userInfo.id])
 
   return (
     <div className="container-fluid pe-0  mt-5 pt-5 mb-5">
         {loading ? 
-            'loading' 
+            <div className='d-flex justify-content-center h-40vh align-items-center'>
+            <Spinner animation="border" variant="warning"/>
+            </div> 
             :
             <>{contact ? 
                 <Container fluid className='overlay d-flex align-items-center justify-content-center'>
-                  {!contactLoading ?
                     <div className='bg-light p-4 rounded'>
                         <h5 className='px-2'>Molimo Vas da unesete temu i sadržaj poruke:</h5>
                         <Form onSubmit={contactHandler}>
@@ -120,7 +130,7 @@ const UserDetails = () => {
                               </Form.Text>
                             </div> : ''
                           }
-                          <input type='submit' value='Pošalji poruku' className='btn btn-warning w-100 mt-3 my-2'/>
+                          {!contactLoading ? <input type='submit' value='Pošalji poruku' className='btn btn-warning w-100 mt-3 my-2'/> :<Spinner animation="border" variant="warning"/>}
                         </Form>
                         <button 
                           onClick={() => {
@@ -134,7 +144,7 @@ const UserDetails = () => {
                         >
                           Prekini slanje
                         </button>
-                    </div> :<div className='bg-light p-5 rounded'>Ucitavanje</div>}
+                    </div>
                 </Container>
                 : 
                 ''

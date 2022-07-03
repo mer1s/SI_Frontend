@@ -100,7 +100,7 @@ const AllUsersScreen = () => {
     },[dispatch,userInfo.id,username, navigate, userInfo.role, success,contactSuccess,contactError])
 
     useEffect(()=>{
-        if(userInfo.role[0] !== "Admin"){}
+        if(userInfo.role[0] !== "Admin")
             navigate('/404')
     },[navigate, userInfo.role])
 
@@ -110,7 +110,7 @@ const AllUsersScreen = () => {
         {loading ? 
             <div className='d-flex justify-content-center h-40vh align-items-center'>
             <Spinner animation="border" variant="warning"/>
-        </div> 
+            </div> 
             :
             <>{contact ? 
                 <Container fluid className='overlay d-flex align-items-center justify-content-center'>
@@ -195,7 +195,7 @@ const AllUsersScreen = () => {
                     </div>
                     <Row className='p-0 m-0 pb-5'>
                         {users.map(n => 
-                          <div className="col-lg-3 userCard px-4 px-md-1 col-md-6 mt-4 mb-3 mb-md-0">
+                          <div key={n.id} className="col-lg-3 userCard px-4 px-md-1 col-md-6 mt-4 mb-3 mb-md-0">
                             <div className="card shadow-sm border-0 rounded">
                               <div className="card-body p-0">
                                 <Link to={`/korisnik/${n.id}`}>
