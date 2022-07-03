@@ -70,6 +70,7 @@ const UserDetails = () => {
       }
 
     useEffect(()=>{
+      if(userInfo)
         if(id === userInfo.id){
           navigate('/profil')
         }
