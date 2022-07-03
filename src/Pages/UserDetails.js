@@ -157,7 +157,7 @@ const UserDetails = () => {
                     <div className="col-md-4 col-lg-5 p-0 m-0">
                         {user.imagePath && <img style={{width:'100%', height:'352px'}} alt={user.imagePath} src={`${apiUrl}/Images/${user.imagePath}`}/>}
                     </div>
-                    <div className="col-md-8 p-0 h-100 col-lg-7">
+                    <div className="col-md-8 py-0 px-0 px-md-2 h-100 col-lg-7">
                         <div className="d-flex h-100 flex-column">
                             <div className="d-flex flex-row justify-content-between align-items-center flex-column p-5 bg-dark text-white">
                                 <h3 className="display-5 p-0 m-0">{user.firstName} {user.lastName}</h3>
@@ -166,7 +166,7 @@ const UserDetails = () => {
                             <div className="p-3 pt-4 bg-black text-white">
                                 <h6>{user.mail}</h6>
                             </div>
-                            {userInfo && user.verified ?
+                            {userInfo ? user.verified ?
                             <div className="d-flex flex-row text-white">
                                 <div className="p-4 bg-primary text-center skill-block-static">
                                     <h4>{ads.length}</h4>
@@ -188,7 +188,7 @@ const UserDetails = () => {
                                     <h4 className='p-0 py-3 m-0'>Korisnik još uvek nije verifikovan</h4>
                                 </div>
                               </div>
-                            }
+                            :''}
                         </div>
                     </div>
                 </div>
