@@ -46,21 +46,21 @@ const Header = (props) => {
            
       <Navbar.Toggle className='text-dark' aria-controls="responsive-navbar-nav"><FiAlignRight/></Navbar.Toggle>
       <Navbar.Collapse id="responsive-navbar-nav">
-        <Nav className="ms-auto">
-          <Nav.Link onClick={props.basketClose} as={Link} to='/' className={`link ${pathname === '/' ? 'border-bottom border-warning' : ''} ${variant !== 'transparent' ? 'text-dark' : 'text-light'}`} eventKey="1">Početna</Nav.Link>
-          <Nav.Link onClick={props.basketClose} as={Link} to='/svi-oglasi' className={`link ${pathname === '/svi-oglasi' ? 'border-bottom border-warning' : ''} ${variant !== 'transparent' ? 'text-dark' : 'text-light'}`} eventKey="2">Svi oglasi</Nav.Link>
-          <Nav.Link onClick={props.basketClose} as={Link} to='/o-nama' className={`link ${pathname === '/o-nama' ? 'border-bottom border-warning' : ''} ${variant !== 'transparent' ? 'text-dark' : 'text-light'}`} eventKey="3">O nama</Nav.Link>
+        <Nav className="ms-auto" id='navbar'>
+          <Nav.Link onClick={props.basketClose} as={Link} to='/' className={`link itemCount ${pathname === '/' ? 'border-bottom border-warning' : ''} ${variant !== 'transparent' ? 'text-dark' : 'text-light'}`} eventKey="1">Početna</Nav.Link>
+          <Nav.Link onClick={props.basketClose} as={Link} to='/svi-oglasi' className={`link itemCount ${pathname === '/svi-oglasi' ? 'border-bottom border-warning' : ''} ${variant !== 'transparent' ? 'text-dark' : 'text-light'}`} eventKey="2">Svi oglasi</Nav.Link>
+          <Nav.Link onClick={props.basketClose} as={Link} to='/o-nama' className={`link itemCount ${pathname === '/o-nama' ? 'border-bottom border-warning' : ''} ${variant !== 'transparent' ? 'text-dark' : 'text-light'}`} eventKey="3">O nama</Nav.Link>
           {!userInfo ? 
-            <Nav.Link as={Link} eventKey="4" to='/prijava' className={`link ${pathname === '/registracija' ? 'border-bottom border-warning' : ''} ${variant !== 'transparent' ? 'text-dark' : 'text-light'}`}>Prijava</Nav.Link>
+            <Nav.Link as={Link} eventKey="4" to='/prijava' className={`link itemCount ${pathname === '/registracija' ? 'border-bottom border-warning' : ''} ${variant !== 'transparent' ? 'text-dark' : 'text-light'}`}>Prijava</Nav.Link>
             :
             ''
           }
-          {pathname !== '/profil/moji-oglasi' && pathname !== '/kreiraj-oglas' && <Nav.Link eventKey="5" onClick={props.basketClose} as={Link} to='/kreiraj-oglas' className={`ms-2 link bg-danger mt-1 py-1 px-2 rounded text-light`}>Kreiraj oglas +</Nav.Link>}
+          {pathname !== '/profil/moji-oglasi' && pathname !== '/kreiraj-oglas' && <Nav.Link eventKey="5" onClick={props.basketClose} as={Link} to='/kreiraj-oglas' className={`ms-2 itemCount link bg-danger mt-1 py-1 px-2 rounded text-light`}>Kreiraj oglas +</Nav.Link>}
           {userInfo ? 
             <>
               <NavDropdown
                 menuVariant="dark" 
-                className='ms-2 dark' 
+                className='ms-2 dark itemCount dropCount' 
                 title={<span className={variant === 'transparent' ? 'text-light' : 'text-dark'}>{userInfo.username}</span>} 
                 id="basic-nav-dropdown"
               >
@@ -68,7 +68,7 @@ const Header = (props) => {
                   
                   as={Link} 
                   to='/profil'
-                  className={`p-2 px-3 text-light m-0`}
+                  className={`itemCount p-2 px-3 text-light m-0`}
                 >
                   Profil
                 </NavDropdown.Item>
@@ -76,7 +76,7 @@ const Header = (props) => {
                   
                   as={Link} 
                   to='/profil/moji-oglasi'
-                  className={`p-2 px-3 text-light m-0`}
+                  className={`itemCount p-2 px-3 text-light m-0`}
                 >
                   Moji oglasi
                 </NavDropdown.Item>
@@ -87,7 +87,7 @@ const Header = (props) => {
                     
                     as={Link} 
                     to='/korisnici'
-                    className={`p-2 px-3 text-light m-0`}
+                    className={`itemCount p-2 px-3 text-light m-0`}
                     >
                       Upravljanje korisnicima
                     </NavDropdown.Item>
@@ -95,7 +95,7 @@ const Header = (props) => {
                 }
                 <NavDropdown.Divider />
                 <NavDropdown.Item>
-                  <button className={`p-0 w-100 text-light d-flex justify-content-between m-0 bg-transparent border-none btn p-0 m-0`}
+                  <button className={`itemCount p-0 w-100 text-light d-flex justify-content-between m-0 bg-transparent border-none btn p-0 m-0`}
                       onClick = {props.basketShow}
                       
                     >
@@ -105,7 +105,7 @@ const Header = (props) => {
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item>
-                  <button className={`p-0 text-light m-0 bg-transparent border-none btn p-0 m-0`}
+                  <button className={`itemCount p-0 text-light m-0 bg-transparent border-none btn p-0 m-0`}
                     onClick = {logout}
                     
                   >

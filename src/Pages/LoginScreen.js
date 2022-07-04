@@ -167,7 +167,7 @@ const LoginScreen = () => {
                             >
                                 <Form.Control id='passwordBox' size="xs" onChange={(e)=> setPassword(e.target.value)} type="password" placeholder="Šifra" />
                             </FloatingLabel>
-                            {loginLoading ? <div className='center w-100 pb-2'><Spinner animation="border" variant="warning"/></div> :<input type='submit' className='btn-warning btn py-3 mb-2 w-100' value={'Prijavi se'}/>}
+                            {loginLoading ? <div className='center w-100 pb-2'><Spinner animation="border" variant="warning"/></div> : <input id='submitBtn' type='submit' className='btn-warning btn py-3 mb-2 w-100' value={'Prijavi se'}/>}
                         </form>
                         <button className='text-warning btn w-100 text-decoration-underline' onClick={showForgottenPass}>Zaboravili ste šifru?</button>
                     </Container>
