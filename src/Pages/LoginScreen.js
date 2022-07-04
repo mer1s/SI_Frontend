@@ -62,11 +62,11 @@ const LoginScreen = () => {
         let passError = "";
         
         if (!username) {
-            nameError = "Password field is required";
+            nameError = "Unesite korisničko ime";
         }
 
         if (!password) {
-            passError = "Potvrdite šifru";
+            passError = "Unesite šifru";
         }
 
         if (passError || nameError) {
@@ -154,7 +154,7 @@ const LoginScreen = () => {
                                 label="Korisničko ime"
                                 className="mb-3 p-0 w-100"
                             >
-                                <Form.Control size="xs" onChange={(e)=> setUsername(e.target.value)} type="text" placeholder="Korisničko ime" />
+                                <Form.Control id='usernameBox' size="xs" onChange={(e)=> setUsername(e.target.value)} type="text" placeholder="Korisničko ime" />
                             </FloatingLabel>
                             {err.passError ? 
                                 <Form.Text className='text-start text-danger p-0 m-0 mb-1'>
@@ -165,7 +165,7 @@ const LoginScreen = () => {
                                 label="Šifra"
                                 className="mb-3 p-0 w-100"
                             >
-                                <Form.Control size="xs" onChange={(e)=> setPassword(e.target.value)} type="password" placeholder="Šifra" />
+                                <Form.Control id='passwordBox' size="xs" onChange={(e)=> setPassword(e.target.value)} type="password" placeholder="Šifra" />
                             </FloatingLabel>
                             {loginLoading ? <div className='center w-100 pb-2'><Spinner animation="border" variant="warning"/></div> :<input type='submit' className='btn-warning btn py-3 mb-2 w-100' value={'Prijavi se'}/>}
                         </form>
