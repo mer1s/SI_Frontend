@@ -1,7 +1,7 @@
 import axios from "axios"
 
-// export const apiUrl = 'https://realestate-si-backend.herokuapp.com'
-export const apiUrl = 'http://merisahmatovic-001-site1.gtempurl.com'
+export const apiUrl = 'https://realestate-si-backend.herokuapp.com'
+// export const apiUrl = 'http://merisahmatovic-001-site1.gtempurl.com'
 
 export const exists = async (path) =>{
     await axios.get(`${apiUrl}/Images/${path}`)
