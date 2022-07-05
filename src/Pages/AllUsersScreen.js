@@ -97,7 +97,8 @@ const AllUsersScreen = () => {
         })
       }
         dispatch(listUsers(username, userInfo.id));
-    },[dispatch,userInfo.id,username, navigate, userInfo.role, success,contactSuccess,contactError])
+        // eslint-disable-next-line
+    },[dispatch,userInfo.id, navigate, userInfo.role, success,contactSuccess,contactError])
 
     useEffect(()=>{
         if(userInfo.role[0] !== "Admin")

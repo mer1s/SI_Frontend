@@ -31,7 +31,7 @@ const Ad = ({ad, shadow}) => {
   }
 
   return (
-    
+
       <Container fluid className='p-0 border-white mb-4 with-shadow m-0 text-light position-relative'>
         <Link to={`/oglas/${ad.id}`} className='position-relative d-flex'>
           <img className='w-100' height={'230px'} src={`${apiUrl}/Images/${ad.titlePath}`} alt={ad.name}/>  
@@ -56,7 +56,6 @@ const Ad = ({ad, shadow}) => {
           <h5 className='p-0 w-100 px-4 m-0 d-flex justify-content-between'><span>Cena:</span><span className='text-warning'>{ad.price}.00 &euro;</span></h5>
         </div>
       </Container>
-
   )
 }
 
