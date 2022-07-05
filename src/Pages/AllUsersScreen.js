@@ -33,6 +33,8 @@ const AllUsersScreen = () => {
     const { success } = deleteUser
 
     const removeUser = (id) =>{
+        if(id === userInfo.id)
+          navigate('/profil')
         if(window.confirm("Da li ste sigurni?")){
             dispatch(deleteUserAction(id))
         }
